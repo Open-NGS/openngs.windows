@@ -1,0 +1,25 @@
+{
+	"name": "com.openngs.windows",
+	"displayName": "OpenNGS Windows",
+	"version": "0.1.0",
+	"openngs": "2026.1",
+	"description": "OpenNGS Windows package",
+	"author": {
+		"name": "EE GAMES",
+		"email": "ray@eegames.com",
+		"url": "https://www.openngs.com"
+	},
+	"_upm": {
+		"supportedPlatforms": [
+			"Windows"
+		]
+	},
+	"dependencies": {
+	},
+	"license": "MIT",
+	"keywords": [
+		"openngs",
+		"windows",
+    	"input"
+	]
+}
