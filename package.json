@@ -11,6 +11,7 @@
 	},
 	"_upm": {
 		"supportedPlatforms": [
+			"PC",
 			"Windows"
 		]
 	},
