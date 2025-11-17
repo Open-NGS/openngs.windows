@@ -11,7 +11,7 @@ namespace OpenNGS.Windows
     public class Native
     {
         static readonly bool kIsWow64 = Native.IsWow64();
-        internal struct WNDCLASSEXW
+        public struct WNDCLASSEXW
         {
             public int cbSize;
             public int style;
@@ -59,46 +59,46 @@ namespace OpenNGS.Windows
         public static extern IntPtr GetModuleHandleW([MarshalAs(UnmanagedType.LPWStr)] string lpModuleName);
 
         [DllImport("kernel32.dll")]
-        internal static extern IntPtr GetCurrentProcess();
+        public static extern IntPtr GetCurrentProcess();
 
         [DllImport("kernel32.dll")]
-        internal static extern IntPtr GetActiveWindow();
+        public static extern IntPtr GetActiveWindow();
 
         [DllImport("user32.dll")]
-        private static extern IntPtr GetForegroundWindow();
+        public static extern IntPtr GetForegroundWindow();
 
         [DllImport("user32.dll")]
-        private static extern IntPtr SetForegroundWindow(IntPtr hWnd);
+        public static extern IntPtr SetForegroundWindow(IntPtr hWnd);
 
         [DllImport("USER32.DLL")]
         public static extern int SetWindowLong(IntPtr hWnd, int nIndex, uint dwNewLong);
 
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        internal static extern bool IsWow64Process(IntPtr hProcess, out bool Wow64Process);
+        public static extern bool IsWow64Process(IntPtr hProcess, out bool Wow64Process);
 
         [DllImport("user32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.U2)]
-        internal static extern ushort RegisterClassExW([In] ref WNDCLASSEXW lpwcx);
+        public static extern ushort RegisterClassExW([In] ref WNDCLASSEXW lpwcx);
 
         [DllImport("user32.dll", SetLastError = true)]
-        internal static extern bool UnregisterClassW(IntPtr windowClass, IntPtr hInstance);
+        public static extern bool UnregisterClassW(IntPtr windowClass, IntPtr hInstance);
 
         [DllImport("user32.dll", SetLastError = true)]
-        internal static extern IntPtr CreateWindowExW(uint dwExStyle, IntPtr windowClass, [MarshalAs(UnmanagedType.LPWStr)] string lpWindowName,
+        public static extern IntPtr CreateWindowExW(uint dwExStyle, IntPtr windowClass, [MarshalAs(UnmanagedType.LPWStr)] string lpWindowName,
             uint dwStyle, int x, int y, int nWidth, int nHeight, IntPtr hWndParent, IntPtr hMenu, IntPtr hInstance, IntPtr pvParam);
 
         [DllImport("user32.dll", SetLastError = true)]
-        internal static extern bool DestroyWindow(IntPtr hWnd);
+        public static extern bool DestroyWindow(IntPtr hWnd);
 
         [DllImport("kernel32.dll")]
-        internal static extern IntPtr SetWindowPos(IntPtr hWnd, IntPtr hWndinsertAfter, int X, int Y, int cx, int cy, uint uFlags);
+        public static extern IntPtr SetWindowPos(IntPtr hWnd, IntPtr hWndinsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
         [DllImport("User32.dll")]
-        internal extern static bool ShowWindow(IntPtr hWnd, short State);
+        public extern static bool ShowWindow(IntPtr hWnd, short State);
 
         [DllImport("user32.dll")]
-        internal static extern IntPtr DefWindowProcW(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam);
+        public static extern IntPtr DefWindowProcW(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam);
 
 
         // 键盘钩子的事件类型
@@ -134,7 +134,7 @@ namespace OpenNGS.Windows
             return returnHwnd;
         }
 
-        internal static bool IsWow64()
+        public static bool IsWow64()
         {
             if (IntPtr.Size == 8)
                 return false;
@@ -148,7 +148,7 @@ namespace OpenNGS.Windows
 
         public delegate IntPtr WndProcDelegate(IntPtr window, uint message, IntPtr wParam, IntPtr lParam);
 
-        internal static IntPtr RegisterWindowClass(IntPtr hInstance, string className, WndProcDelegate proc)
+        public static IntPtr RegisterWindowClass(IntPtr hInstance, string className, WndProcDelegate proc)
         {
             var wndClass = new Native.WNDCLASSEXW();
             wndClass.cbSize = Marshal.SizeOf<Native.WNDCLASSEXW>();
